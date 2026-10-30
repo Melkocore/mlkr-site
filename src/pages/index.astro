@@ -1,31 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import MiniPlayer from '../components/MiniPlayer';
+import VisualToggle from '../components/VisualToggle';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const albums = await getCollection('albums');
 const latest = albums.sort((a,b) => b.data.releaseDate.valueOf() - a.data.releaseDate.valueOf())[0];
 ---
 <BaseLayout title="M3LK0K093 — live-coding, industrial, experimental, noise">
   <section class="container py-16">
-    <h1 class="text-5xl md:text-7xl font-sans font-bold glitch-text leading-none">M3LK0K093</h1>
-    <p class="mt-4 text-fg-muted max-w-2xl">Proyecto musical de live-coding. Industrial, experimental, noise. Patrones, síntesis y visuales como código.</p>
-    <div class="flex gap-3 mt-8 font-mono text-sm">
-      <a href={`${base}musica`} class="brutal px-4 py-2 hover:text-acid">[ Escuchar ]</a>
-      <a href={`${base}lab`} class="brutal px-4 py-2 hover:text-acid">[ Lab ]</a>
-      <a href={`${base}redes`} class="brutal px-4 py-2 hover:text-acid">[ Redes ]</a>
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+      <div>
+        <a href={`${base}redes`} class="block">
+          <h1 class="text-5xl md:text-7xl font-sans font-bold glitch-text leading-none hover:opacity-90">M3LK0K093</h1>
+        </a>
+        <p class="mt-4 text-fg-muted text-xl leading-tight">
+          Live-coding.<br />
+          Noise against facism.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 md:sticky md:top-14 z-40">
+        <MiniPlayer client:load />
+        <VisualToggle client:load />
+        <a href={`${base}lab`} class="rounded-full border border-grid px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-fg-muted transition-colors hover:border-acid hover:text-acid">
+          Lab →
+        </a>
+      </div>
     </div>
   </section>
 
   {latest && (
     <section class="container py-12">
-      <h2 class="font-mono text-acid mb-4">## último lanzamiento</h2>
+      <h2 class="font-mono text-acid mb-4">// último lanzamiento //</h2>
       <a href={`${base}musica/${latest.data.slug}`} class="brutal p-6 flex flex-col md:flex-row gap-6 hover:border-acid transition">
         {latest.data.cover
           ? <img src={`${base}images/${latest.data.cover}`} alt={latest.data.title} class="w-full md:w-48 aspect-square object-cover border border-grid" loading="lazy" />
           : <div class="w-full md:w-48 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted">[ cover ]</div>}
         <div>
           <h3 class="text-2xl font-bold">{latest.data.title}</h3>
-          <p class="text-fg-muted mt-1">{latest.data.releaseDate.toLocaleDateString('es-ES')} · {latest.data.genres.join(' · ')}</p>
+          <p class="text-fg-muted mt-1">{latest.data.releaseDate.toLocaleDateString('es-ES')} · {latest.data.credits.join(' · ')}</p>
           <p class="mt-3 text-sm">{latest.data.credits.join(' / ')}</p>
         </div>
       </a>
@@ -33,7 +47,7 @@ const latest = albums.sort((a,b) => b.data.releaseDate.valueOf() - a.data.releas
   )}
 
   <section class="container py-12">
-    <h2 class="font-mono text-acid mb-4">## secciones</h2>
+    <h2 class="font-mono text-acid mb-4">// secciones //</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
       {['musica','blog','videos','shows','bio','redes','lab','legal/privacidad'].map(s => (
         <a href={`${base}${s}`} class="brutal p-4 font-mono text-sm hover:text-acid uppercase">{s}</a>

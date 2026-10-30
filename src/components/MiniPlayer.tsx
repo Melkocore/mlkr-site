@@ -53,9 +53,13 @@ export default function MiniPlayer() {
   return (
     <div className="flex items-center gap-2 rounded-full border border-grid bg-ink-2/90 px-2 py-1 shadow-lg shadow-black/40 backdrop-blur">
       {coverSrc ? (
-        <img src={coverSrc} alt={track.title} className="h-7 w-7 rounded-sm object-cover border border-grid" />
+        <a href={`${BASE}musica`} title="Escuchar" className="block">
+          <img src={coverSrc} alt={track.title} className="h-7 w-7 rounded-sm object-cover border border-grid hover:border-acid" />
+        </a>
       ) : (
-        <div className="h-7 w-7 rounded-sm bg-ink-3 flex items-center justify-center font-mono text-[8px] text-fg-muted">[ ]</div>
+        <a href={`${BASE}musica`} title="Escuchar" className="block">
+          <div className="h-7 w-7 rounded-sm bg-ink-3 flex items-center justify-center font-mono text-[8px] text-fg-muted hover:border-acid">[ ]</div>
+        </a>
       )}
       <div className="hidden sm:flex flex-col leading-tight min-w-[110px] max-w-[140px]">
         <span className="text-[9px] uppercase tracking-[0.16em] text-fg-muted truncate">{track.title}</span>

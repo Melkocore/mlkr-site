@@ -28,7 +28,7 @@ const trackRenders = await Promise.all(
         : <div class="w-full md:w-56 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted text-xs text-center p-2">[ cover ]<br/>{album.data.title}</div>}
       <div class="flex-1">
         <h1 class="text-3xl font-bold">{album.data.title}</h1>
-        <p class="text-fg-muted text-sm mt-1">{album.data.releaseDate.toLocaleDateString('es-ES')} · {album.data.genres.join(' · ')}</p>
+        <p class="text-fg-muted text-sm mt-1">{album.data.releaseDate.toLocaleDateString('es-ES')} · {album.data.credits.join(' · ')}</p>
         <p class="text-sm mt-2">{album.data.credits.join(' / ')}</p>
         {album.data.bandcampUrl && (
           <a href={album.data.bandcampUrl} target="_blank" rel="noopener" class="inline-block mt-4 font-mono text-sm brutal px-3 py-1 hover:text-acid">[ Abrir en Bandcamp ]</a>
