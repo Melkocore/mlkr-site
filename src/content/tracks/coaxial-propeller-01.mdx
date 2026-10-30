@@ -5,28 +5,28 @@ index: 1
 duration: "04:12"
 tags: ["drums", "synth", "noise", "31edo", "strudel"]
 script: |
-  // ===== VISUAL =====
-  await initHydra({ feedStrudel: true })
-  osc(6, 0.1, 1.2).color(0.1, 0.9, 0.25).modulate(noise(3, 0.1), 0.22).rotate(0.06, 0.01).posterize(10).out()
-  
-  // ===== AUDIO =====
+  //"Coaxial Propeller"
+  await initHydra({feedStrudel:1,detectAudio:false})
+  noise(20,0.6,2)
+  .rotate(1,-1,-2)
+  .mask(shape(20))
+  .colorama([0,1].smooth())
+  .modulateScale(o0)
+  .blend(o0,.2)
+  .modulateScale(o0,1,2)
+  //.blend(o0)
+  .blend(o0,.8)
+  .kaleid(4)
+  .scale(.5)
+  .out(o0)
   setcpm(80/4)
-  $: sound("bd hh sd*2? hh").bank("dr550").room(0.7).color("yellow")
-  $: i("12@4 0@4?").xen("31edo").octave("-3").sound("sawtooth").lpf("6800 4000").duckattack("0.4").gain(.7)
-  $: i("0 3 0 5 12 4 15 13").xen("31edo").s(sine).dist("0.7").gain("0.8").jux(press).color("green").o(3)
-  $: sound("cp").struct("~ x*4 ~.4 x*4?").juxFlip(rev).distort(0.6).lpf(70000).room(0.4).dec(.1).gain(0.1)
-  $: note("c4 d3 a3 e3").fast(3).sound("sawtooth").room(0.3).gain(0.8)
+  sound("bd hh sd*2? hh").bank("dr550").room(0.7)
+  sound("cp").struct("~ x*4 ~.4 x*4?").juxFlip(rev).distort(0.6).lpf(70000).room(0.4).dec(.1).gain(0.1) 
 ---
 
-Primer patrón del Lab. Combina drums crudos con bajos en 31 EDO y capas de noise/distorsión.
+Primer patrón del Lab. Hydra estatica + drums/noise.
 
 ## Notas
 
-- `setcpm(80/4)` fija el tempo a 80 BPM en compás de 4.
-- Capa de percusión con `dr550` + room.
-- Bajo en 31 EDO (xen) con filtro descendente.
-- Melodía en sieve (`i(...)`) con jux(press) + envío a salida 3.
-- Capa de noise en `cp` con struct rítmico.
-- Textura de sawtooth acelerada (fast 3).
+Tema 1 de mini-player y Lab.
 
-Abrir en Lab para ejecutarlo.
