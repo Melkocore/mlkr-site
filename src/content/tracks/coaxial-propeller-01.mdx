@@ -1,0 +1,27 @@
+---
+title: "Coaxial Propeller — track 01"
+album: "coaxial-propeller"
+index: 1
+duration: "04:12"
+tags: ["drums", "synth", "noise", "31edo", "strudel"]
+script: |
+  setcpm(80/4)
+  $: sound("bd hh sd*2? hh").bank("dr550").room(0.7).color("yellow")
+  $: i("12@4 0@4?").xen("31edo").octave("-3").sound("sawtooth").lpf("6800 4000").duckattack("0.4").gain(.7)
+  $: i("0 3 0 5 12 4 15 13").xen("31edo").s(sine).dist("0.7").gain("0.8").jux(press).color("green").o(3)
+  $: sound("cp").struct("~ x*4 ~.4 x*4?").juxFlip(rev).distort(0.6).lpf(70000).room(0.4).dec(.1).gain(0.1)
+  $: note("c4 d3 a3 e3").fast(3).sound("sawtooth").room(0.3).gain(0.8)
+---
+
+Primer patrón del Lab. Combina drums crudos con bajos en 31 EDO y capas de noise/distorsión.
+
+## Notas
+
+- `setcpm(80/4)` fija el tempo a 80 BPM en compás de 4.
+- Capa de percusión con `dr550` + room.
+- Bajo en 31 EDO (xen) con filtro descendente.
+- Melodía en sieve (`i(...)`) con jux(press) + envío a salida 3.
+- Capa de noise en `cp` con struct rítmico.
+- Textura de sawtooth acelerada (fast 3).
+
+Abrir en Lab para ejecutarlo.

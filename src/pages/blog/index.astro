@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Blog — M3LK0K093">
+  <section class="container py-12">
+    <h1 class="font-mono text-acid text-2xl mb-6">## blog</h1>
+    {posts.length === 0 && <p class="text-fg-muted">Sin posts todavía.</p>}
+    <div class="grid gap-4">
+      {posts.map((p) => (
+        <a href={`${base}blog/${p.data.slug}`} class="brutal p-5 hover:border-acid transition">
+          <h2 class="font-bold">{p.data.title}</h2>
+          <p class="text-fg-muted text-sm mt-1">{p.data.date.toLocaleDateString('es-ES')} · {p.data.tags.join(', ')}</p>
+          {p.data.excerpt && <p class="text-sm mt-2">{p.data.excerpt}</p>}
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

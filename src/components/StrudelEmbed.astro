@@ -1,0 +1,30 @@
+---
+interface Props { code?: string; title?: string; }
+const { code = '', title = 'Strudel REPL' } = Astro.props;
+const encoded = encodeURIComponent(code.trim());
+---
+<div class="brutal p-4">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-mono text-acid">{title}</h3>
+    <div class="flex gap-2 font-mono text-xs">
+      {code && <button data-copy={code} class="copy-btn brutal px-2 py-1 hover:text-acid">copiar</button>}
+      <a class="brutal px-2 py-1 hover:text-acid" href={`https://strudel.cc/#code=${encoded}`} target="_blank" rel="noopener">abrir en Strudel ↗</a>
+    </div>
+  </div>
+  {code && (
+    <pre class="mb-3 overflow-x-auto bg-ink p-3 text-xs"><code>{code}</code></pre>
+  )}
+  <iframe src="https://strudel.cc" title="Strudel REPL" loading="lazy" class="w-full h-[420px] border border-grid bg-ink"></iframe>
+  <p class="text-xs text-fg-muted mt-2 font-mono">El audio requiere gesto del usuario (botón Play). El iframe es el REPL oficial; si el código no se precarga, pégalo desde el bloque de arriba.</p>
+</div>
+
+<script is:inline>
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    const txt = btn.getAttribute('data-copy') || '';
+    navigator.clipboard?.writeText(txt).then(() => {
+      const o = btn.textContent; btn.textContent = 'copiado'; setTimeout(()=>btn.textContent=o,1200);
+    });
+  });
+</script>

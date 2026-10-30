@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const links = [
+  { label: 'Bandcamp', url: 'https://placeholder.bandcamp.com' },
+  { label: 'Spotify', url: 'https://open.spotify.com' },
+  { label: 'YouTube', url: 'https://youtube.com' },
+  { label: 'Instagram', url: 'https://instagram.com' },
+  { label: 'GitHub', url: 'https://github.com/Melkocore' },
+  { label: 'Strudel', url: 'https://strudel.cc' },
+];
+---
+<BaseLayout title="Redes — M3LK0K093">
+  <section class="container py-12">
+    <h1 class="font-mono text-acid text-2xl mb-6">## redes</h1>
+    <div class="grid md:grid-cols-2 gap-3">
+      {links.map(l => (
+        <a href={l.url} target="_blank" rel="noopener" class="brutal p-4 font-mono hover:text-acid flex justify-between">
+          <span>{l.label}</span><span>↗</span>
+        </a>
+      ))}
+    </div>
+    <p class="text-fg-muted text-xs mt-4">Sustituye las URLs placeholder por las reales.</p>
+  </section>
+</BaseLayout>

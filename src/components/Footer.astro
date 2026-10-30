@@ -1,0 +1,13 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<footer class="border-t border-grid mt-16">
+  <div class="container py-8 text-sm text-fg-muted flex flex-col md:flex-row justify-between gap-4">
+    <span class="font-mono">© {new Date().getFullYear()} M3LK0K093 — live-coding / industrial / experimental / noise</span>
+    <div class="flex gap-4 font-mono">
+      <a href={`${base}legal/privacidad`} class="hover:text-acid">Privacidad</a>
+      <a href={`${base}legal/cookies`} class="hover:text-acid">Cookies</a>
+      <a href={`${base}legal/licencia`} class="hover:text-acid">Licencia</a>
+    </div>
+  </div>
+</footer>

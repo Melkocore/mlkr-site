@@ -1,0 +1,24 @@
+---
+interface Props { code?: string; title?: string; }
+const { code = '', title = 'Hydra visual' } = Astro.props;
+---
+<div class="brutal p-4">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-mono text-acid">{title}</h3>
+    {code && <button data-copy={code} class="copy-btn font-mono text-xs brutal px-2 py-1 hover:text-acid">copiar código</button>}
+  </div>
+  {code && (
+    <pre class="mb-3 overflow-x-auto bg-ink p-3 text-xs"><code>{code}</code></pre>
+  )}
+  <iframe src="https://hydra.ojack.xyz/" title="Hydra" loading="lazy" class="w-full h-[420px] border border-grid bg-ink"></iframe>
+  <p class="text-xs text-fg-muted mt-2 font-mono">Si el iframe no carga (X-Frame-Options), abre hydra.ojack.xyz en una pestaña nueva y pega el código.</p>
+</div>
+
+<script is:inline>
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    navigator.clipboard?.writeText(btn.getAttribute('data-copy')||'');
+    const o = btn.textContent; btn.textContent='copiado'; setTimeout(()=>btn.textContent=o,1200);
+  });
+</script>

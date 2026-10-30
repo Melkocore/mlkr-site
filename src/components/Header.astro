@@ -1,0 +1,28 @@
+---
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: '', label: 'Home' },
+  { href: 'musica', label: 'Música' },
+  { href: 'blog', label: 'Blog' },
+  { href: 'videos', label: 'Videos' },
+  { href: 'shows', label: 'Shows' },
+  { href: 'bio', label: 'Bio' },
+  { href: 'redes', label: 'Redes' },
+  { href: 'lab', label: 'Lab' },
+  { href: 'legal/privacidad', label: 'Legal' },
+];
+---
+<header class="sticky top-0 z-50 backdrop-blur bg-ink/80 border-b border-grid">
+  <div class="container flex items-center justify-between h-14">
+    <a href={base} class="font-mono text-acid text-lg tracking-tight glitch-text">M3LK0K093</a>
+    <nav class="hidden md:flex gap-5 text-sm font-mono">
+      {links.map(l => <a href={`${base}${l.href}`} class="hover:text-acid transition-colors">{l.label}</a>)}
+    </nav>
+    <details class="md:hidden">
+      <summary class="cursor-pointer font-mono text-acid">☰</summary>
+      <div class="absolute right-4 mt-2 brutal p-3 flex flex-col gap-2 min-w-[160px]">
+        {links.map(l => <a href={`${base}${l.href}`} class="font-mono text-sm hover:text-acid">{l.label}</a>)}
+      </div>
+    </details>
+  </div>
+</header>

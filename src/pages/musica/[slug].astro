@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+const base = import.meta.env.BASE_URL;
+
+export async function getStaticPaths() {
+  const albums = await getCollection('albums');
+  return albums.map((a) => ({ params: { slug: a.data.slug }, props: { album: a } }));
+}
+
+const { album } = Astro.props;
+const { Content: AlbumContent } = await render(album);
+const tracks = (await getCollection('tracks'))
+  .filter((t) => t.data.album === album.data.slug)
+  .sort((a, b) => a.data.index - b.data.index);
+
+const trackRenders = await Promise.all(
+  tracks.map(async (t) => ({ track: t, Content: (await render(t)).Content }))
+);
+---
+<BaseLayout title={`${album.data.title} — M3LK0K093`} description="Álbum y scripts de live-coding.">
+  <section class="container py-12">
+    <p class="font-mono text-acid text-sm mb-2"><a href={`${base}musica`}>← música</a></p>
+    <div class="flex flex-col md:flex-row gap-6">
+      <div class="w-full md:w-56 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted text-xs text-center p-2">[ cover ]<br/>{album.data.title}</div>
+      <div class="flex-1">
+        <h1 class="text-3xl font-bold">{album.data.title}</h1>
+        <p class="text-fg-muted text-sm mt-1">{album.data.releaseDate.toLocaleDateString('es-ES')} · {album.data.genres.join(' · ')}</p>
+        <p class="text-sm mt-2">{album.data.credits.join(' / ')}</p>
+        {album.data.bandcampUrl && (
+          <a href={album.data.bandcampUrl} target="_blank" rel="noopener" class="inline-block mt-4 font-mono text-sm brutal px-3 py-1 hover:text-acid">[ Abrir en Bandcamp ]</a>
+        )}
+      </div>
+    </div>
+
+    {album.data.bandcampEmbed && (
+      <div class="mt-6" set:html={album.data.bandcampEmbed}></div>
+    )}
+
+    <div class="mt-8 prose prose-invert max-w-none">
+      <AlbumContent />
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <h2 class="font-mono text-acid mb-4">## tracklist</h2>
+    <ol class="space-y-4">
+      {trackRenders.map(({ track, Content: TrackContent }) => (
+        <li class="brutal p-4">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <span class="font-mono text-acid">{String(track.data.index).padStart(2, '0')}</span>
+              <span class="ml-2 font-bold">{track.data.title}</span>
+              {track.data.duration && <span class="text-fg-muted text-sm ml-2">({track.data.duration})</span>}
+            </div>
+            <div class="flex gap-2 font-mono text-xs">
+              {track.data.tags.map((t) => <span class="border border-grid px-2 py-0.5">{t}</span>)}
+            </div>
+          </div>
+
+          {track.data.script && (
+            <details class="mt-3">
+              <summary class="cursor-pointer font-mono text-sm text-acid">ver script</summary>
+              <pre class="mt-2 overflow-x-auto bg-ink p-3 text-xs"><code>{track.data.script}</code></pre>
+              <div class="flex gap-2 mt-2">
+                <button data-copy={track.data.script} class="copy-btn font-mono text-xs brutal px-2 py-1 hover:text-acid">copiar script</button>
+                <a class="font-mono text-xs brutal px-2 py-1 hover:text-acid" href={`https://strudel.cc/#code=${encodeURIComponent(track.data.script)}`} target="_blank" rel="noopener">abrir en Strudel</a>
+              </div>
+            </details>
+          )}
+
+          <div class="mt-3 text-sm">
+            <TrackContent />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+      const txt = btn.getAttribute('data-copy') || '';
+      navigator.clipboard?.writeText(txt).then(() => {
+        const old = btn.textContent;
+        btn.textContent = 'copiado';
+        setTimeout(() => { btn.textContent = old; }, 1200);
+      });
+    });
+  </script>
+</BaseLayout>

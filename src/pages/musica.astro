@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const base = import.meta.env.BASE_URL;
+const albums = (await getCollection('albums')).sort((a,b) => b.data.releaseDate.valueOf()-a.data.releaseDate.valueOf());
+---
+<BaseLayout title="Música — M3LK0K093" description="Discografía, embeds y scripts de live-coding.">
+  <section class="container py-12">
+    <h1 class="font-mono text-acid text-2xl mb-6">## música</h1>
+    <div class="grid gap-6">
+      {albums.map(a => (
+        <a href={`${base}musica/${a.data.slug}`} class="brutal p-6 flex flex-col md:flex-row gap-6 hover:border-acid transition">
+          <div class="w-full md:w-40 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted text-xs text-center p-2">[ cover ]<br/>{a.data.title}</div>
+          <div class="flex-1">
+            <h2 class="text-xl font-bold">{a.data.title}</h2>
+            <p class="text-fg-muted text-sm mt-1">{a.data.releaseDate.toLocaleDateString('es-ES')} · {a.data.genres.join(' · ')}</p>
+            <p class="mt-3 text-sm">{a.body?.slice(0,180)}</p>
+            <p class="font-mono text-xs text-acid mt-3">tracklist →</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
