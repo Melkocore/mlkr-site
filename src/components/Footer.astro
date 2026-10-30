@@ -1,5 +1,5 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <footer class="border-t border-grid mt-16">
   <div class="container py-8 text-sm text-fg-muted flex flex-col md:flex-row justify-between gap-4">

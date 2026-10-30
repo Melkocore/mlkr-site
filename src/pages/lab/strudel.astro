@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 
 const tracks = (await getCollection('tracks')).sort((a,b) => a.data.index - b.data.index);
 const first = tracks[0];
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <BaseLayout title="Lab — Strudel — M3LK0K093">
   <section class="container py-12">

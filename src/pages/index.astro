@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const albums = await getCollection('albums');
 const latest = albums.sort((a,b) => b.data.releaseDate.valueOf() - a.data.releaseDate.valueOf())[0];
 ---
@@ -21,7 +21,9 @@ const latest = albums.sort((a,b) => b.data.releaseDate.valueOf() - a.data.releas
     <section class="container py-12">
       <h2 class="font-mono text-acid mb-4">## último lanzamiento</h2>
       <a href={`${base}musica/${latest.data.slug}`} class="brutal p-6 flex flex-col md:flex-row gap-6 hover:border-acid transition">
-        <div class="w-full md:w-48 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted">[ cover ]</div>
+        {latest.data.cover
+          ? <img src={`${base}images/${latest.data.cover}`} alt={latest.data.title} class="w-full md:w-48 aspect-square object-cover border border-grid" loading="lazy" />
+          : <div class="w-full md:w-48 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted">[ cover ]</div>}
         <div>
           <h3 class="text-2xl font-bold">{latest.data.title}</h3>
           <p class="text-fg-muted mt-1">{latest.data.releaseDate.toLocaleDateString('es-ES')} · {latest.data.genres.join(' · ')}</p>

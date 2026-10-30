@@ -8,7 +8,7 @@ interface Props {
   description?: string;
 }
 const { title = 'M3LK0K093', description = 'Live-coding project — industrial / experimental / noise.' } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <!DOCTYPE html>
 <html lang="es" class="grain">

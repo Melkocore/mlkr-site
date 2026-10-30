@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 export async function getStaticPaths() {
   const albums = await getCollection('albums');
@@ -22,7 +22,9 @@ const trackRenders = await Promise.all(
   <section class="container py-12">
     <p class="font-mono text-acid text-sm mb-2"><a href={`${base}musica`}>← música</a></p>
     <div class="flex flex-col md:flex-row gap-6">
-      <div class="w-full md:w-56 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted text-xs text-center p-2">[ cover ]<br/>{album.data.title}</div>
+      {album.data.cover
+        ? <img src={`${base}images/${album.data.cover}`} alt={album.data.title} class="w-full md:w-56 aspect-square object-cover border border-grid" loading="lazy" />
+        : <div class="w-full md:w-56 aspect-square bg-ink-3 flex items-center justify-center font-mono text-fg-muted text-xs text-center p-2">[ cover ]<br/>{album.data.title}</div>}
       <div class="flex-1">
         <h1 class="text-3xl font-bold">{album.data.title}</h1>
         <p class="text-fg-muted text-sm mt-1">{album.data.releaseDate.toLocaleDateString('es-ES')} · {album.data.genres.join(' · ')}</p>
