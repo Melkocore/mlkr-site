@@ -5,6 +5,7 @@ Sitio web estático (GitHub Pages) para el proyecto musical **M3LK0K093** (live-
 - Stack: Astro 5 + Tailwind CSS v4 + Content Collections
 - Hosting: GitHub Pages (repo `Melkocore/mlkr-site`)
 - URL pública: `https://melkocore.github.io/mlkr-site/`
+-
 
 ## Estructura
 
