@@ -9,7 +9,15 @@ Sitio web estático (GitHub Pages) para el proyecto musical **M3LK0K093** (live-
 
 ## Estructura
 
-- `Home` · `Música` · `Blog` · `Videos` · `Shows` · `Bio` · `Redes` · `Lab` (Strudel + Hydra) · `Legal`
+- `Home` · `Música` · `Blog` · `Videos` · `Shows` · `Bio` · `Redes` · `Lab` (Strudel + Hydra directos) · `Legal`
+- Ambient: dock sonoro/visual en todas las páginas salvo Lab (`src/components/AmbientDock.tsx`).
+
+## Integración Strudel/Hydra (directa)
+
+- Se usa `<strudel-editor>` desde `@strudel/repl` (unpkg), no iframe a strudel.cc.
+- Controles React en `src/components/LabControls.tsx`.
+- Códigos de pista en `script` con marcadores `VISUAL` / `AUDIO`.
+- Ambient (audio/visual) carga Strudel/Hydra y permite guardar el preset del Lab.
 
 ## Desarrollo local
 

@@ -1,59 +1,63 @@
 # Plan de implementación — M3LK0K093
 
-## Objetivo
+## Estado actual
 
-Plataforma "todo en uno" para el proyecto musical M3LK0K093 con perfil C (control total, hosting gratuito en GitHub Pages, sin servidor). Prioridad MVP: publicar el primer álbum **Coaxial Propeller** y crear la base del **Lab** (Strudel + Hydra). Resto de secciones como placeholders.
+Stack: Astro + React (`@astrojs/react`) + Tailwind + Content Collections (glob). Hosting: GitHub Pages. Astro 7 mantenido (no downgrade), con `vite.define = { global: 'globalThis' }`.
 
-## Stack
+Dominio público: `https://melkocore.github.io/mlkr-site/`
 
-Astro 5 + Tailwind v4 + Content Collections (glob loader) + MDX.
-Hosting: GitHub Pages vía GitHub Actions. Node 22.
+## Arquitectura
 
-## Estructura del sitio
+- Sitio estático SSG.
+- Contenido tipado: albums, tracks, blog, shows.
+- Strudel/Hydra embebidos directamente con `<strudel-editor>` (web component desde unpkg) y React controls.
+- Ambient (audio/visual) disponible en todas las páginas salvo Lab, con toggle manual.
 
-Home, Música, Blog, Videos, Shows, Bio, Redes, Lab (Strudel / Hydra), Legal (privacidad, cookies, licencia).
+## Páginas
 
-## Roadmap por milestones
+Home, Música, Blog, Videos, Shows, Bio, Redes, Lab (index/strudel/hydra), Legal.
 
-- M1 Scaffold + GitHub Pages deploy — hecho
-- M2 Home + tema industrial + navegación — hecho
-- M3 Música: álbum + embed Bandcamp + tracklist con scripts — hecho (1 track)
-- M4 Blog (index + 1 post) + RSS opcional — hecho
-- M5 Shows/Bio/Redes/Videos placeholders — hecho
-- M6 Lab v1: Strudel iframe + Hydra iframe + cargador de scripts — hecho
-- M7 Legal (privacidad/cookies/licencia) — hecho
-- M8 SEO (sitemap, OG, meta, Lighthouse, a11y) — pendiente
-- M9 Contenido real (covers, más tracks, fechas, vídeos, enlaces) — pendiente
-- M10 Lab v2: audio-reactivo local + snippets guardados — pendiente
-- M11 Lab v3: integración profunda Strudel+Hydra self-hosted — pendiente
+## Integración Strudel/Hydra directa
 
-## Integración Strudel / Hydra
+- Dependencias: `@strudel/web`, `hydra-synth`, React.
+- Types: `src/types/strudel-web.d.ts`, `src/types/hydra-synth.d.ts`.
+- `src/components/StrudelLab.astro`: renderiza `LabControls` + `<strudel-editor code=...>`.
+- Marcadores de código:
+  - `// ===== VISUAL =====`
+  - `// ===== AUDIO =====`
+- Visual primero, audio al final (REPL reproduce la última expresión).
+- Lab controls: Reproducir (`evaluate`), Detener (`stop`), Usar como ambiente, Restablecer.
+- `src/lib/ambientPreset.ts` separa VISUAL/AUDIO y guarda en localStorage.
 
-v1 usa iframes a los REPLs oficiales + bloques copiables + "Abrir en Strudel/Hydra". El audio no hace autoplay (requiere gesto). Lazy-load de iframes. Plan v3 evaluará self-host del bundle de Strudel con un canvas Hydra compartiendo el AudioContext.
+## Ambient (al inicio)
 
-Consideraciones:
+- `src/lib/ambientAudio.ts`: carga `@strudel/web`, inicializa e evalúa audio almacenado o patrón por defecto.
+- `src/lib/ambientVisual.ts`: Hydra canvas fijo con sketch industrial + tick loop, respeta `prefers-reduced-motion`.
+- `src/components/AmbientDock.tsx`: toggles de audio/visual + enlace al Lab.
+- Incluido en `BaseLayout` salvo en Lab (`isLab`).
 
-- Autoplay bloqueado → botón Play explícito.
-- Rendimiento móvil → `client:visible`, desactivar visuales en `prefers-reduced-motion`.
-- Dependencias externas: sin ellas el Lab degrada a enlaces + copia de código.
-- Bandwidth: mover previews de audio a Bandcamp, no al repo.
+## Roadmap
 
-## Contenido: álbum Coaxial Propeller
+- M1 Scaffold + Pages deploy — hecho
+- M2 Home + tema industrial — hecho
+- M3 Música + álbum + embed Bandcamp + scripts — hecho
+- M4 Blog — hecho
+- M5 Placeholders — hecho
+- M6 Lab directo (Strudel/Hydra embebidos) — hecho
+- M7 Ambient dock — hecho
+- M8 SEO/OG/a11y/perf — pendiente
+- M9 Contenido real (cover restante, enlaces, más tracks) — pendiente
+- M10 Chunk splitting para bundle grande — pendiente
 
-- Primer álbum only. Track 01 incluye el script Strudel aportado.
-- Enlaces Bandcamp placeholder con comentarios.
-- Cover art pendiente (bloque `[ cover ]`).
+## Pendiente
 
-## Despliegue pendiente (acción manual en GitHub)
+- Enlaces reales (Bandcamp, redes).
+- Más tracks con scripts.
+- Fechas y videos reales.
+- Dominio propio opcional.
 
-1. Activar Pages source: GitHub Actions.
-2. Hacer push de la rama main.
+## Notas técnicas
 
-## Decisiones tomadas
-
-- Repo: `Melkocore/mlkr-site`
-- Dominio: `https://melkocore.github.io/mlkr-site/` (proyecto).
-- Idioma principal: español (textos).
-- Comentarios: no.
-- Editor: MDX en git (simple).
-- Placeholders para enlaces aún no creados.
+- Astro 7 se mantuvo; se añadió `global: 'globalThis'` en Vite.
+- Iframes de Strudel/Hydra anteriores quedaron como fallback histórico (pueden limpiarse).
+- `lab` excluye AmbientDock para evitar interferencias.

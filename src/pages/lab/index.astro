@@ -1,23 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import StrudelLab from '../../components/StrudelLab.astro';
+
+const tracks = (await getCollection('tracks')).sort((a, b) => a.data.index - b.data.index);
+const first = tracks[0];
+const labCode = first?.data.script ?? '';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
-<BaseLayout title="Lab — M3LK0K093" description="Experimentos interactivos de live-coding (Strudel + Hydra).">
+<BaseLayout title="Lab — M3LK0K093" description="Live-coding directo con Strudel y Hydra.">
   <section class="container py-12">
     <h1 class="font-mono text-acid text-2xl mb-2">## lab</h1>
-    <p class="text-fg-muted mb-6 text-sm">Espacio de experimentación interactiva: patrones de Strudel y visuales de Hydra. Todo el audio requiere gesto del usuario.</p>
-    <div class="grid md:grid-cols-2 gap-4">
-      <a href={`${base}lab/strudel`} class="brutal p-6 hover:border-acid transition">
-        <h2 class="font-bold mb-2">Strudel REPL</h2>
-        <p class="text-sm text-fg-muted">Patrones de live-coding, síntesis, 31 EDO, noise. Carga scripts del álbum.</p>
-      </a>
-      <a href={`${base}lab/hydra`} class="brutal p-6 hover:border-acid transition">
-        <h2 class="font-bold mb-2">Hydra visual</h2>
-        <p class="text-sm text-fg-muted">Visuales reactivas en el browser. Copia, edita y ejecuta código Hydra.</p>
-      </a>
-    </div>
-    <div class="mt-8 text-sm text-fg-muted">
-      <p>Principios: sin autoplay, lazy-load, degradación elegante en móvil, enlaces externos de fallback.</p>
-    </div>
+    <p class="text-fg-muted mb-6 text-sm">
+      Strudel + Hydra embebidos. Editá el código, pulsá <span class="text-acid">Reproducir</span> o Ctrl+Enter.
+      El bloque <span class="text-acid">VISUAL</span> va primero y el <span class="text-acid">AUDIO</span> al final.
+    </p>
+    {first && <StrudelLab code={labCode} title={`Lab: ${first.data.title}`} />}
   </section>
 </BaseLayout>

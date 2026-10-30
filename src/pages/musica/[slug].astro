@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import StrudelLab from '../../components/StrudelLab.astro';
 import { getCollection, render } from 'astro:content';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
@@ -61,14 +62,9 @@ const trackRenders = await Promise.all(
           </div>
 
           {track.data.script && (
-            <details class="mt-3">
-              <summary class="cursor-pointer font-mono text-sm text-acid">ver script</summary>
-              <pre class="mt-2 overflow-x-auto bg-ink p-3 text-xs"><code>{track.data.script}</code></pre>
-              <div class="flex gap-2 mt-2">
-                <button data-copy={track.data.script} class="copy-btn font-mono text-xs brutal px-2 py-1 hover:text-acid">copiar script</button>
-                <a class="font-mono text-xs brutal px-2 py-1 hover:text-acid" href={`https://strudel.cc/#code=${encodeURIComponent(track.data.script)}`} target="_blank" rel="noopener">abrir en Strudel</a>
-              </div>
-            </details>
+            <div class="mt-3">
+              <StrudelLab code={track.data.script} title={`Track ${track.data.index}: ${track.data.title}`} />
+            </div>
           )}
 
           <div class="mt-3 text-sm">

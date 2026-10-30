@@ -1,0 +1,19 @@
+---
+import LabControls from './LabControls';
+
+interface Props { code: string; title?: string; }
+const { code, title = 'Strudel Lab' } = Astro.props;
+---
+<div class="brutal p-4">
+  <h3 class="font-mono text-acid mb-3">{title}</h3>
+  <LabControls client:load />
+  <div class="mt-4 overflow-hidden border border-grid">
+    <strudel-editor code={code}></strudel-editor>
+  </div>
+</div>
+
+<script is:inline src="https://unpkg.com/@strudel/repl@1.3.0"></script>
+<style is:global>
+  strudel-editor { display: none; }
+  strudel-editor + div { width: 100%; }
+</style>
