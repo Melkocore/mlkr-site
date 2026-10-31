@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "note": "Replace the steps after running: figcraft-cli commands --json",
+  "source": "design/figcraft/source/m3lk0k093-portal.figcraft",
+  "steps": [
+    {
+      "action": "render",
+      "output": "design/exports/portal.png",
+      "scale": 2
+    },
+    {
+      "action": "export",
+      "format": "svg",
+      "output": "design/exports/"
+    }
+  ]
+}

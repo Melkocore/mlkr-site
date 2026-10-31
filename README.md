@@ -56,3 +56,14 @@ Pasos una sola vez en GitHub:
 - Próximas fechas en `content/shows/`.
 
 Ver `docs/PLAN.md` para el roadmap completo.
+
+## FigCraft design workflow
+
+FigCraft is integrated at the process level:
+
+- Source files: `design/figcraft/source/*.figcraft`
+- Tokens: `design/tokens/tokens.json`
+- Documentation: `docs/FIGCRAFT.md`
+- Exports: `design/exports/` (ignored) -> curated assets go to `public/images/figcraft/`
+
+See `docs/FIGCRAFT.md` for setup, commands, and agent constraints.

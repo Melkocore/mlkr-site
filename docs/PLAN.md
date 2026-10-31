@@ -61,3 +61,9 @@ Home, Música, Blog, Videos, Shows, Bio, Redes, Lab (index/strudel/hydra), Legal
 - Astro 7 se mantuvo; se añadió `global: 'globalThis'` en Vite.
 - Iframes de Strudel/Hydra anteriores quedaron como fallback histórico (pueden limpiarse).
 - `lab` excluye AmbientDock para evitar interferencias.
+## Integración FigCraft
+
+- Estructura de carpetas creada (design, tokens, docs).
+- Scripts npm añadidos (requieren `figcraft-cli` en PATH).
+- Tokens sincronizados inicialmente con `src/styles/global.css`.
+- Próximo paso: crear primer source `.figcraft` y exportar assets reales.
