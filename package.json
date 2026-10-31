@@ -10,11 +10,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "design:commands": "figcraft-cli commands --json --filter autoLayout",
-    "design:info": "figcraft-cli info design/figcraft/source/m3lk0k093-portal.figcraft",
-    "design:render": "figcraft-cli render design/figcraft/source/m3lk0k093-portal.figcraft -o design/exports/portal.png --scale 2",
-    "design:export": "figcraft-cli export design/figcraft/source/m3lk0k093-portal.figcraft -o design/exports/ --format svg",
-    "design:mcp": "figcraft-cli mcp --automation-read-root design --automation-write-root design/exports"
+    "design:commands": "bash scripts/figcraft-cli.sh commands --json --filter autoLayout",
+    "design:info": "bash scripts/figcraft-cli.sh info design/figcraft/source/m3lk0k093-portal.figcraft",
+    "design:render": "bash scripts/figcraft-cli.sh render design/figcraft/source/m3lk0k093-portal.figcraft -o design/exports/portal.png --scale 2",
+    "design:export": "bash scripts/figcraft-cli.sh export design/figcraft/source/m3lk0k093-portal.figcraft -o design/exports/ --format svg",
+    "design:mcp": "bash scripts/figcraft-cli.sh mcp --automation-read-root design --automation-write-root design/exports"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.6",

@@ -99,3 +99,27 @@ If FigCraft becomes unusable:
 2. Remove MCP/CLI assumptions from docs only if needed.
 3. Continue editing Astro manually or migrate to another tool using the approved assets.
 4. Tokens in `src/styles/global.css` remain stable.
+## Local environment (AppImage)
+
+If `figcraft-cli` is not in `PATH`, use the repository wrapper:
+
+```bash
+bash scripts/figcraft-cli.sh --version
+npm run design:commands
+```
+
+The wrapper checks:
+1. `figcraft-cli` in `PATH`.
+2. `FIGCRAFT_APPIMAGE` environment variable.
+3. `/home/ghashgul/Applications/figcraft-0.12.1-linux-x86_64.AppImage` by default.
+
+If you want a local `figcraft-cli` shortcut, use a shell function/alias instead of a plain symlink:
+
+```bash
+figcraft-cli() {
+  /home/ghashgul/Applications/figcraft-0.12.1-linux-x86_64.AppImage cli "$@"
+}
+```
+
+In this repository, prefer `bash scripts/figcraft-cli.sh` so every contributor and agent uses the same entry point.EOF
+echo done
