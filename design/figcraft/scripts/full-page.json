@@ -1,0 +1,639 @@
+[
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Portal Canvas",
+      "width": 1440,
+      "height": 2600,
+      "props": {
+        "fills": [
+          "#0a0a0a"
+        ]
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Header",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 72,
+      "parent": {
+        "$step": 0
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "M3LK0K093",
+      "x": 24,
+      "y": 20,
+      "parent": {
+        "$step": 1
+      },
+      "props": {
+        "fontSize": 20,
+        "fill": "#c6ff00"
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Música / Blog / Videos / Shows / Bio / Redes / Lab",
+      "x": 820,
+      "y": 28,
+      "parent": {
+        "$step": 1
+      },
+      "props": {
+        "fontSize": 14,
+        "fill": "#9a9a9a"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Hero",
+      "x": 0,
+      "y": 72,
+      "width": 1440,
+      "height": 300,
+      "parent": {
+        "$step": 0
+      },
+      "props": {
+        "fills": [
+          "#0a0a0a"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "// project: M3LK0K093 - live-coding",
+      "x": 120,
+      "y": 54,
+      "parent": {
+        "$step": 4
+      },
+      "props": {
+        "fontSize": 12,
+        "fill": "#c6ff00"
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "M3LK0K093",
+      "x": 120,
+      "y": 78,
+      "parent": {
+        "$step": 4
+      },
+      "props": {
+        "fontSize": 72,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Proyecto musical de live-coding. Industrial, experimental, noise.",
+      "x": 120,
+      "y": 170,
+      "parent": {
+        "$step": 4
+      },
+      "props": {
+        "fontSize": 16,
+        "fill": "#9a9a9a"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Btn Escuchar",
+      "x": 120,
+      "y": 220,
+      "width": 140,
+      "height": 36,
+      "parent": {
+        "$step": 4
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Escuchar",
+      "x": 24,
+      "y": 10,
+      "parent": {
+        "$step": 8
+      },
+      "props": {
+        "fontSize": 14,
+        "fill": "#c6ff00"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Btn Lab",
+      "x": 272,
+      "y": 220,
+      "width": 120,
+      "height": 36,
+      "parent": {
+        "$step": 4
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Lab",
+      "x": 46,
+      "y": 10,
+      "parent": {
+        "$step": 10
+      },
+      "props": {
+        "fontSize": 14,
+        "fill": "#c6ff00"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Album Card",
+      "x": 120,
+      "y": 420,
+      "width": 1000,
+      "height": 260,
+      "parent": {
+        "$step": 0
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Cover Placeholder",
+      "x": 24,
+      "y": 24,
+      "width": 200,
+      "height": 200,
+      "parent": {
+        "$step": 12
+      },
+      "props": {
+        "fills": [
+          "#1a1c1e"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Coaxial Propeller",
+      "x": 250,
+      "y": 34,
+      "parent": {
+        "$step": 12
+      },
+      "props": {
+        "fontSize": 28,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "2026-10-30 · live-coding · industrial · experimental · noise",
+      "x": 250,
+      "y": 72,
+      "parent": {
+        "$step": 12
+      },
+      "props": {
+        "fontSize": 13,
+        "fill": "#9a9a9a"
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Primer album: scripts, patrones y visuales reactivas. La musica vive en Bandcamp; los scripts en el Lab.",
+      "x": 250,
+      "y": 102,
+      "parent": {
+        "$step": 12
+      },
+      "props": {
+        "fontSize": 14,
+        "fill": "#9a9a9a"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "CTA Abrir",
+      "x": 250,
+      "y": 170,
+      "width": 164,
+      "height": 34,
+      "parent": {
+        "$step": 12
+      },
+      "props": {
+        "fills": [
+          "#1a1c1e"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Abrir en musica",
+      "x": 22,
+      "y": 9,
+      "parent": {
+        "$step": 17
+      },
+      "props": {
+        "fontSize": 13,
+        "fill": "#c6ff00"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Sections Grid",
+      "x": 120,
+      "y": 730,
+      "width": 1000,
+      "height": 380,
+      "parent": {
+        "$step": 0
+      },
+      "props": {
+        "fills": [
+          "#0a0a0a"
+        ]
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Música",
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Música",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 20
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Blog",
+      "x": 256,
+      "y": 0,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Blog",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 22
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Videos",
+      "x": 512,
+      "y": 0,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Videos",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 24
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Shows",
+      "x": 768,
+      "y": 0,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Shows",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 26
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Bio",
+      "x": 0,
+      "y": 136,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Bio",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 28
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Redes",
+      "x": 256,
+      "y": 136,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Redes",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 30
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Lab",
+      "x": 512,
+      "y": 136,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Lab",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 32
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Legal",
+      "x": 768,
+      "y": 136,
+      "width": 240,
+      "height": 104,
+      "parent": {
+        "$step": 19
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "Legal",
+      "x": 16,
+      "y": 36,
+      "parent": {
+        "$step": 34
+      },
+      "props": {
+        "fontSize": 18,
+        "fill": "#e8e8e8"
+      }
+    }
+  },
+  {
+    "command": "node.create",
+    "params": {
+      "type": "frame",
+      "name": "Footer",
+      "x": 0,
+      "y": 1160,
+      "width": 1440,
+      "height": 96,
+      "parent": {
+        "$step": 0
+      },
+      "props": {
+        "fills": [
+          "#111213"
+        ]
+      }
+    }
+  },
+  {
+    "command": "text.create",
+    "params": {
+      "text": "(c) 2026 M3LK0K093 - live-coding / industrial / experimental / noise",
+      "x": 24,
+      "y": 34,
+      "parent": {
+        "$step": 36
+      },
+      "props": {
+        "fontSize": 12,
+        "fill": "#9a9a9a"
+      }
+    }
+  }
+]
